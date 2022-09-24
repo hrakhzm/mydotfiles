@@ -1,0 +1,44 @@
+-- データが多い場合に見やすくする
+\x auto
+
+-- NULLの場合に明示的に表示する
+-- デフォルトでは、NULLはスペースとして表示される
+\pset null '[NULL]'
+
+-- 境界線の表示形式をUnicodeに デフォルトはASCII
+\pset linestyle unicode
+
+-- 境界線の表示
+\pset border 2
+
+-- 出力形式をwrapped書式にして、幅の広いデータ値を複数行に折り返して対象の列幅に合うように出力する
+-- \pset format wrapped
+
+-- SQL文の実行時間を表示
+\timing on
+
+-- 詳細なエラー表示
+\set VERBOSITY verbose
+
+-- 1行で複数回コマンドが実行されたら、1回だけヒストリに保存
+\set HISTCONTROL ignoredups
+
+-- 履歴を保存するファイル名 DB名をファイル名に入れる
+\set HISTFILE  ~/.psql_history- :DBNAME
+
+-- 履歴に保存するコマンドの最大数
+\set HISTSIZE 1000000
+
+
+-- PROMPT1は通常のプロンプト PROMPT2はコマンドがセミコロンで終わっていないときのプロンプト
+\set PROMPT1 '%[%033[1m%](%n@%M:%>)%[%033[0m%] [%[%033[1;32m%]%/%[%033[0m%]] \n=# '
+\set PROMPT2 ''
+-- \set PROMPT1 '%[%033[1;32m%]%n %`date +%H:%M` %R%#%[%033[0m%] '
+-- \set PROMPT2 '%[%033[1;32m%]%R%#%[%033[0m%] '
+
+-- SQLのタブ補完を行うときに大文字を使う
+\set COMP_KEYWORD_CASE upper
+
+-- ページャの設定 デフォルトはoff
+\setenv PAGER 'pspg -s 6 -F --less-status-bar --no-mouse'
+\pset pager always

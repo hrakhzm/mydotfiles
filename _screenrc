@@ -1,0 +1,58 @@
+#setting
+defencoding utf8
+defencoding utf-8
+encoding utf-8 utf-8
+defutf8 on
+defscrollback 10000
+
+
+
+# color setting
+#term screen-256color
+attrcolor b ".I"    # allow bold colors - necessary for some reason
+defbce on    # use current bg color for erased chars
+term xterm
+termcapinfo xterm* 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'   # tell screen how to set colors. AB = background, AF=foreground
+#available scroll
+termcapinfo xterm* ti@:te@
+# auto detach
+autodetach on
+
+#(old) status line setting
+#hardstatus alwayslastline "%{= rw} %H %{= wk}%-Lw%{= bw}%n%f* %t%{= wk}%+Lw %{= wk}%=%{= gk} %y/%m/%d %c "
+#(new) status line setting
+hardstatus alwayslastline '%{= kw}%m/%d %02c:%s %{= cw}%H%{-} %L=%-w%45L>%{= b.}%n %t%{-}%+w'
+
+#Ctrl+Tにコマンドキーを割り当て
+escape ^Tt
+#Ctrl+spaceにコマンドキーを割り当て
+#escape \000\000
+
+bind c screen zsh
+#スペースでコピーモードを起動
+bind ' ' copy
+
+#コピーモードでコピー時にscreenのバッファと クリップボードを同期する
+bindkey -m ' ' eval 'stuff " "' writebuf 'exec !!! xclip -selection clipboard /tmp/screen-exchange'
+bindkey -m Y eval 'stuff Y' writebuf 'exec !!! xclip -selection clipboard /tmp/screen-exchange'
+bindkey -m y eval 'stuff y' writebuf 'exec !!! xclip -selection clipboard /tmp/screen-exchange'
+bindkey -m W eval 'stuff W' writebuf 'exec !!! xclip -selection clipboard /tmp/screen-exchange'
+
+# Resize window
+bind e eval 'command -c resize' 'echo "Resize window"'
+bind ^e eval 'command -c resize' 'echo "Resize window"'
+bind -c resize h eval 'command -c resize' 'resize -h -1'
+bind -c resize l eval 'command -c resize' 'resize -h +1'
+bind -c resize j eval 'command -c resize' 'resize -v +1'
+bind -c resize k eval 'command -c resize' 'resize -v -1'
+bind -c resize ^h eval 'command -c resize' 'resize -h -1'
+bind -c resize ^l eval 'command -c resize' 'resize -h +1'
+bind -c resize ^j eval 'command -c resize' 'resize -v +1'
+bind -c resize ^k eval 'command -c resize' 'resize -v -1'
+
+#split
+bind v eval "split -v" focus screen
+bind s eval split focus screen
+
+# 画面をmail で送信する
+#bind S eval "exec sh -c 'screen -X hardcopy -h hardcopy; cat hardcopy | tail -n 10000 | /usr/sbin/sendmail hiroaki_hazama@forcia.com'"
