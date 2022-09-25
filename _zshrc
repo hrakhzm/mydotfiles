@@ -304,6 +304,8 @@ if [ -n "$DISPLAY" ]; then
     preexec_functions=($preexec_functions update_title)
 fi
 
+alias gh="cd /data/github/"
+alias gl="cd /data/git/"
 alias perl.exe="perl"
 alias cata="lv /usr/local/tomcat/logs/catalina.out"
 alias rst="sudo /home/forcia/rstWebFast"
@@ -349,7 +351,8 @@ alias kkt="cd /home/forcia/gitlab_local/webconnect/kkg_dom_train/"
 alias tad="cd /home/forcia/gitlab_local/forcia-standards/travel-api-docs/"
 alias gco="git checkout"
 alias tig="tig --all"
-
+alias ide="ide"
+alias myd="gh && cd mydotfiles"
 ####################################################
 #	PECO
 ####################################################
@@ -413,6 +416,11 @@ function setWebapps() {
 	echo "set ${appname}"
 }
 
+function ide() {
+	tmux split-window -v -p 30
+	tmux split-window -h -p 66
+	tmux split-window -h -p 50
+}
 
 
 ####################################################
