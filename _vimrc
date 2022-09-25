@@ -304,3 +304,13 @@ set undodir=~/.vim/tmp
 " backupファイルの出力先 編集前のファイルバックアップ
 set backup
 set backupdir=~/.vim/tmp
+
+" Split window
+nmap ss :split<Return><C-w>w
+nmap sv :vsplit<Return><C-w>w
+" Move window
+nmap <Space> <C-w>w
+map sh <C-w>h
+map sk <C-w>k
+map sj <C-w>j
+map sl <C-w>l
