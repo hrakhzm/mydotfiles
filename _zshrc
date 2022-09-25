@@ -4,12 +4,12 @@
 #	ヒストリ
 ###############################################
 ## ヒストリを保存するファイル
-HISTFILE=~/.zsh_history
+export HISTFILE=~/.zsh_history
 ## メモリ上のヒストリ数。
 ## 大きな数を指定してすべてのヒストリを保存するようにしている。
-HISTSIZE=100000000
+export HISTSIZE=100000000
 ## 保存するヒストリ数
-SAVEHIST=$HISTSIZE
+export SAVEHIST=$HISTSIZE
 ## ヒストリファイルにコマンドラインだけではなく実行時刻と実行時間も保存する。
 setopt extended_history
 ## 同じコマンドラインを連続で実行した場合はヒストリに登録しない。
@@ -146,6 +146,7 @@ setopt no_beep
 ## 辞書順ではなく数字順に並べる。
 setopt numeric_glob_sort
 
+
 # 展開
 ## --prefix=~/localというように「=」の後でも
 ## 「~」や「=コマンド」などのファイル名展開を行う。
@@ -205,69 +206,83 @@ WORDCHARS="${WORDCHARS}|"
 #			 alias
 ####################################################
 
-
-# alias
-## ページャーを使いやすくする。
-### grep -r def *.rb L -> grep -r def *.rb |& lv
-alias -g L="|& $PAGER"
-## grepを使いやすくする。
-alias -g G='| grep'
-## 後はおまけ。
-alias -g H='| head'
-alias -g T='| tail'
-alias -g S='| sed'
-
-## 完全に削除。
-alias rr="command rm -rf"
-## ファイル操作を確認する。
-alias rm="rm -i"
-alias cp="cp -i"
-alias mv="mv -i"
+GITREPOS=/data/git/
 
 ## pushd/popdのショートカット。
 alias pd="pushd"
 alias po="popd"
 
-## sshで文字化けを防ぐ
-alias -g sshe="cocot -t UTF-8 -p EUC-JP -- ssh"
+alias perl.exe="perl"
+alias cata="lv /usr/local/tomcat/logs/catalina.out"
+alias rst="sudo /home/forcia/rstWebFast"
+alias rstp="sudo /home/forcia/bin/restartWeb.sh stop"
+alias rsta="sudo /home/forcia/bin/restartWeb.sh start"
+alias pg92="sudo ln -fns /usr/local/pgsql-9.2.24 /usr/local/pgsql "
+alias pg96="sudo ln -fns /usr/local/pgsql-9.6.10 /usr/local/pgsql "
+alias co="cocot -t UTF-8 -p EUC-JP"
+alias hazama="cd /data/git/hazama/setting"
+alias mnt="sudo mount -t vboxsf mercurial_Repos /home/forcia/MercurialRepos"
+alias so="source ~/.zshrc"
+alias knt="cd /home/forcia/gitlab_local/knt/knt/"
+alias dp="cd /home/forcia/gitlab_local/knt_dp"
+alias jtt="cd /home/forcia/gitlab_local/jtt/jtt/"
+alias jy="cd /home/forcia/gitlab_local/jtb/dom_yado/"
+alias jt="cd /home/forcia/gitlab_local/jtb/dom_tour/"
+alias jdd="cd /home/forcia/gitlab_local/jtb/jtb_dom_dp/"
+alias kkp="cd /home/forcia/gitlab_local/webconnect/kkg_dom_app/"
+alias kka="cd /home/forcia/gitlab_local/webconnect/kkg_dom_air/"
+alias kkps="cd /home/forcia/gitlab_local/webconnect/kkg_dom_app/web/server"
+alias kkpc="cd /home/forcia/gitlab_local/webconnect/kkg_dom_app/web/client"
+alias kky="cd /home/forcia/gitlab_local/webconnect/kkg_dom_yado/"
+alias kkc="cd /home/forcia/gitlab_local/webconnect/kkg_cfunction/"
+alias kkt="cd /home/forcia/gitlab_local/webconnect/kkg_dom_train/"
+alias tad="cd /home/forcia/gitlab_local/forcia-standards/travel-api-docs/"
+alias mt="cd /home/forcia/gitlab_local/webconnect/material_registration"
+alias gco="git checkout"
+alias gd="git diff --cached"
+alias tig="tig"
+alias tiga="tig --all"
+alias kkyrun="kky && npm run build:types && cd web/server && npm run dev "
+alias kkpsrun="kkp && npm run build:types && cd web/server && npm run dev "
+alias kkpcrun="kkp && npm run build:types && cd web/client && npm run build:sass && npm run dev "
+alias dcdn="mt && cd docker-compose && docker-compose down"
+alias dcuppp="mt && cd docker-compose && docker-compose down && docker-compose up -d pybuilder postgres"
+alias dcupf="mt && cd docker-compose && docker-compose up frontend"
+alias dcupb="mt && cd docker-compose && docker-compose up backend"
+alias updateschema="mt && cd ./apps/backend/ && npx ts-node src/create-generate-schema-script.ts  && node dist/src/generate-schema.js && cd - && cp ./apps/backend/src/schema.graphql ./apps/frontend/schema.graphql && cd ./apps/frontend && npm run generate"
+alias rcode="~/remote_code.sh"
+alias blog=" mt && ls -al ./batch/db/logs/builder.log* |tail -n -1 |cut -d ' ' -f 12 |xargs less"
+alias dc='docker-compose'
+alias dclf='docker-compose logs -f --tail=50'
+alias dclff='dclf frontend'
+alias dclfb='dclf backend'
+alias dcr='docker-compose restart'
+alias dcrf='dcr frontend'
+alias nta='cd /home/forcia/gitlab_local/app.nta/'
+alias ntdp='cd /home/forcia/gitlab_local/app.nta/nta_dp'
+alias ntjr='cd /home/forcia/gitlab_local/app.nta/nta_jr'
+alias ntdjr='cd /home/forcia/gitlab_local/app.nta/nta_dom_jr'
+alias ntdt='cd /home/forcia/gitlab_local/app.nta/nta_dom_tour'
+alias nty='cd /home/forcia/gitlab_local/app.nta/nta_yado_next'
+alias ntd='cd /home/forcia/gitlab_local/app.nta/nta_dom'
+alias ntw='cd /home/forcia/gitlab_local/app.nta/nta_world'
+alias ntwd='cd /home/forcia/gitlab_local/app.nta/nta_wdp'
+alias ini='cd /home/forcia/gitlab_local/app.nta/nta_common/init'
+alias anad='cd /home/forcia/gitlab_local/ananext/ana_dom'
+alias anai='cd /home/forcia/gitlab_local/ananext/ana_int'
+alias sqltmp='vim /home/forcia/gitlab_local/webconnect/material_registration/batch/db/sqlTmp/"#1 Build-1.sql"'
 
-## 標準入力をクリップボードにコピーする
-alias pbcopy="xsel --clipboard --input"
+if [[ -x `which colordiff` ]]; then
+  alias diff='colordiff -u'
+else
+  alias diff='diff -u'
+fi
 
-## lsとpsの設定
-### ls: できるだけGNU lsを使う。
-### ps: 自分関連のプロセスのみ表示。
-case $(uname) in
-    *BSD|Darwin)
-	if [ -x "$(which gnuls)" ]; then
-	    alias ls="gnuls"
-	    alias la="ls -lhAF --color=auto"
-	else
-	    alias la="ls -lhAFG"
-	fi
-	alias ps="ps -fU$(whoami)"
-	;;
-    SunOS)
-	if [ -x "`which gls`" ]; then
-	    alias ls="gls"
-	    alias la="ls -lhAF --color=auto"
-	else
-	    alias la="ls -lhAF"
-	fi
-	alias ps="ps -fl -u$(/usr/xpg4/bin/id -un)"
-	;;
-    *)
-	alias la="ls -lhAF --color=auto"
-	alias ps="ps -fU$(whoami) --forest"
-	;;
-esac
-
-#http://d.hatena.ne.jp/jeneshicc/20090224/1235475290
-# some more ls aliases
 alias ls='ls -G'
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
+alias x="exit"
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -278,91 +293,20 @@ if [ -x /usr/bin/dircolors ]; then
 		alias grep='grep --color=auto'
 		alias fgrep='fgrep --color=auto'
 		alias egrep='egrep --color=auto'
+		alias zgrep='zgrep --color=auto'
 fi
 
-## exitのショートカット。
-alias x="exit"
-
-# ウィンドウタイトル
-## 実行中のコマンドとユーザ名とホスト名とカレントディレクトリを表示。
-update_title() {
-    local command_line=
-    typeset -a command_line
-    command_line=${(z)2}
-    local command=
-    if [ ${(t)command_line} = "array-local" ]; then
-	command="$command_line[1]"
-    else
-	command="$2"
-    fi
-    print -n -P "\e]2;"
-    echo -n "(${command})"
-    print -n -P " %n@%m:%~\a"
-}
-## X環境上でだけウィンドウタイトルを変える。
-if [ -n "$DISPLAY" ]; then
-    preexec_functions=($preexec_functions update_title)
-fi
-
-alias gh="cd /data/github/"
-alias gl="cd /data/git/"
-alias perl.exe="perl"
-alias cata="lv /usr/local/tomcat/logs/catalina.out"
-alias rst="sudo /home/forcia/rstWebFast"
-alias rstp="sudo /home/forcia/bin/restartWeb.sh stop"
-alias rsta="sudo /home/forcia/bin/restartWeb.sh start"
-alias grac="sudo /home/forcia/bin/httpd graceful"
-alias hazama="cd /data/git/hazama/setting"
-alias mnt="sudo mount -t vboxsf mercurial_Repos /home/forcia/MercurialRepos"
-alias httpd="sudo vim /usr/local/apache/conf/httpd.conf"
-alias vhost="sudo vim /usr/local/apache/conf/extra/httpd-vhosts.conf"
-alias prox="sudo vim /usr/local/apache/conf/extra/httpd-proxy.conf"
-alias so="source ~/.zshrc"
-alias zshr="vim ~/.zshrc"
-alias psa="ps ax|grep httpd"
-alias pst="ps ax|grep tomcat"
-alias psp="ps ax|grep postgres"
-alias onkntdp="unlinkWebapps && setWebapps knt_dp knt_dp/web && setWebapps filesync tools/FileSynchronizer4"
-alias onknt="unlinkWebapps && setWebapps knt knt/knt/web && setWebapps filesync tools/FileSynchronizer4"
-alias onjtt="unlinkWebapps && setWebapps jtt jtt/jtt/web && setWebapps filesync tools/FileSynchronizer4"
-alias onjt="unlinkWebapps && setWebapps dom_tour jtb/dom_tour/web && setWebapps filesync tools/FileSynchronizer4"
-alias onjy="unlinkWebapps && setWebapps dom_yado jtb/dom_yado/web && setWebapps filesync tools/FileSynchronizer4"
-alias onjyjt="unlinkWebapps && setWebapps dom_yado jtb/dom_yado/web && setWebapps dom_tour jtb/dom_tour/web && setWebapps filesync tools/FileSynchronizer4"
-alias onusj="unlinkWebapps && switchTomcat 8.0.35 && switchJava 1.8.0_91 && setWebapps usj jtb/usj/web"
-alias knt="cd /home/forcia/gitlab_local/knt/knt/"
-alias dp="cd /home/forcia/gitlab_local/knt_dp"
-alias jtt="cd /home/forcia/gitlab_local/jtt/jtt/"
-alias jy="cd /home/forcia/gitlab_local/jtb/dom_yado/"
-alias jt="cd /home/forcia/gitlab_local/jtb/dom_tour/"
-alias jc="cd /home/forcia/gitlab_local/jtb/jtb_cfunction/"
-alias jdd="cd /home/forcia/gitlab_local/jtb/jtb_dom_dp/"
-alias kdy="cd /home/forcia/gitlab_local/knt/knt_dom_yado/"
-alias kda="cd /home/forcia/gitlab_local/knt/knt_dom_air/"
-alias kdt="cd /home/forcia/gitlab_local/knt/knt_dom_train/"
-alias kdp="cd /home/forcia/gitlab_local/knt/knt_dom_app/"
-alias kdd="cd /home/forcia/gitlab_local/knt/knt_docs/"
-alias kkp="cd /home/forcia/gitlab_local/webconnect/kkg_dom_app/"
-alias kkps="cd /home/forcia/gitlab_local/webconnect/kkg_dom_app/web/server"
-alias kkpc="cd /home/forcia/gitlab_local/webconnect/kkg_dom_app/web/client"
-alias kky="cd /home/forcia/gitlab_local/webconnect/kkg_dom_yado/"
-alias doc="cd /home/forcia/gitlab_local/webconnect/kkg_dom_yado/docker"
-alias kkc="cd /home/forcia/gitlab_local/webconnect/kkg_cfunction/"
-alias kkt="cd /home/forcia/gitlab_local/webconnect/kkg_dom_train/"
-alias tad="cd /home/forcia/gitlab_local/forcia-standards/travel-api-docs/"
-alias gco="git checkout"
-alias tig="tig --all"
-alias ide="ide"
-alias myd="gh && cd mydotfiles"
 ####################################################
 #	PECO
 ####################################################
-
+# anyframeをいれたので不要だがhistory選択後にすぐ実行してほしくないので一旦pecoを使う
+#
 #history
 function peco-history-selection() {
 	BUFFER=$( \
-		history -n 1 	|
-		tac				|
-		awk '!a[$0]++' 	|
+		history -n 1 	|	# history の出力
+		tac				|	# historyを逆順に出力
+		awk '!a[$0]++' 	|	# 重複行の削除 $0は行全体を指す
 		peco)				
 	CURSOR=$#BUFFER
 	zle clear-screen
@@ -371,19 +315,19 @@ function peco-history-selection() {
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
-function peco-cd-selection() {
-	BUFFER=$( \
-		history -n 1 	|
-		grep "^cd "		|
-		tac				|
-		awk '!a[$0]++' 	|
-		peco)				
-	CURSOR=$#BUFFER
-	zle clear-screen
-}
+# function peco-cd-selection() {
+# 	BUFFER=$( \
+# 		history -n 1 	|	# history の出力
+# 		grep "^cd "		|	# cdコマンドに限定
+# 		tac				|	# historyを逆順に出力
+# 		awk '!a[$0]++' 	|	# 重複行の削除
+# 		peco)				
+# 	CURSOR=$#BUFFER
+# 	zle clear-screen
+# }
 
-zle -N peco-cd-selection
-bindkey '^d' peco-cd-selection
+# zle -N peco-cd-selection
+# bindkey '^d' peco-cd-selection
 
 ####################################################
 # Utility function
@@ -448,7 +392,7 @@ PATH=$MAVEN_HOME/bin:$JAVA_HOME/bin:$ANT_HOME/bin:$APRICOT_SHELL_EXECUTABLE_HOME
 
 #nvm
 source /home/forcia/github/nvm/nvm.sh
-nvm use --delete-prefix v12.14.1
+nvm use 16.13.2
 #pyenv
 export PYENV_ROOT="/home/forcia/github/pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -459,5 +403,62 @@ export GOENV_ROOT=$HOME/github/goenv
 export PATH=$GOENV_ROOT/bin:$PATH
 eval "$(goenv init -)"
 
+#go
+#export GOPATH=$HOME/go
+#PATH=$PATH:$GOPATH/bin
+
 #rust
 source $HOME/.cargo/env
+
+#conda
+#export PATH=$HOME/anaconda3/bin:$PATH
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+#__conda_setup="$('/home/forcia/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+#    if [ -f "/home/forcia/anaconda3/etc/profile.d/conda.sh" ]; then
+#        . "/home/forcia/anaconda3/etc/profile.d/conda.sh"
+#    else
+#        export PATH="/home/forcia/anaconda3/bin:$PATH"
+#    fi
+#fi
+#unset __conda_setup
+# <<< conda initialize <<<
+
+
+# zinitのインストール
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+  print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+  command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+  command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+    print -P "%F{33} %F{34}Installation successful.%f%b" || \
+    print -P "%F{160} The clone has failed.%f%b"
+fi
+
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+### zinitのインストールここまで
+
+# fishのようにコマンドラインのサジェスト
+zinit light zsh-users/zsh-autosuggestions
+# コマンドラインのシンタックスハイライト 
+#zinit light zdharma/fast-syntax-highlighting
+# pecoやfzfによるあいまい検索のモジュール
+zinit light mollifier/anyframe
+
+# anyframeのkeybind
+#bindkey '^f' anyframe-widget-cdr
+#autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+#bindkey '^r' anyframe-widget-execute-history
+bindkey '^b' anyframe-widget-checkout-git-branch
+#bindkey '^g' anyframe-widget-cd-ghq-repository
+#bindkey '^k' anyframe-widget-kill
+
+export NODE_OPTIONS=""
