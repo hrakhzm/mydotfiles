@@ -297,7 +297,7 @@ autocmd FileType python nnoremap <S-f> :call Autopep8()<CR>
 
 " swpファイルの出力先 vimのクラッシュに備えたファイル
 set swapfile
-set directory ~/.vim/tmp
+set directory=~/.vim/tmp
 " undoファイルの出力先 ファイルを閉じた後でもundoできるようにする
 set undofile
 set undodir=~/.vim/tmp
