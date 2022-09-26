@@ -314,3 +314,6 @@ map sh <C-w>h
 map sk <C-w>k
 map sj <C-w>j
 map sl <C-w>l
+" Move tab
+nmap <S-Tab> :tabprev<Return>
+nmap <Tab> :tabnext<Return>
